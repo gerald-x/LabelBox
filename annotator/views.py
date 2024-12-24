@@ -19,10 +19,8 @@ def edited_image(request):
         reference_id = request.POST.get("reference_id")
         annotated_image = request.POST.get("annotatedImage")
         already_annotated = request.POST.get("reference")
-        print("yes" if already_annotated else "no", already_annotated, reference_id)
 
         if already_annotated != "false":
-            print("yes" if already_annotated else "no", already_annotated)
             already_annotated_image = AnnotatedImage.objects.get(id=int(reference_id))
             image_data = base64.urlsafe_b64decode(annotated_image)
             already_annotated_image.edited_image = ContentFile(content=image_data, name="uploaded-image.png")
