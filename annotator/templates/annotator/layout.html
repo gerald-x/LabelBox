@@ -1,0 +1,16 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Annotator</title>
+    {% block links %}{% endblock links %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% block scripts %}{% endblock scripts %}
+  </head>
+  <body>
+    <div class="p-6">{% block body %}{% endblock body %}</div>
+  </body>
+</html>

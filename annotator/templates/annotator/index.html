@@ -1,0 +1,81 @@
+{% extends "annotator/layout.html" %} {% load static %} {% block links %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.min.css"
+  integrity="sha512-tYKqO78H3mRRCHa75fms1gBvGlANz0JxjN6fVrMBvWL+vOOy200npwJ69OBl9XEsTu3yVUvZNrdWFIIrIf8FLg=="
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.theme.min.css"
+  integrity="sha512-8vDOoSF7kZUYkn7BiQulRCTvpRoenljlkQDZhM6+IqDJi5jHDH9QEYH9NfMBB8LlqiYc7O17YGxbGx7dOxKrpw=="
+  crossorigin="anonymous"
+/>
+{% endblock links %} {% block scripts %}
+<script
+  type="module"
+  defer
+  src="{% static '/annotator/js/lib/main.js' %}"
+></script>
+{% endblock scripts %} {% block body %}
+<div class="py-4 px-8 bg-blue-400">
+  You can add or delete images from the admin panel on
+  <span class="font-bold"> "/admin" </span> using the credentials username:
+  <span class="font-bold">admin</span> and password:
+  <span class="font-bold">geraldTheDev</span>
+</div>
+
+<div class="my-8 w-[75vw] h-[30vh] mx-auto">
+  <div class="glide">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        {% for image in images %}
+        <li class="glide__slide">
+          <img
+            data-key="{{image.id}}"
+            src="{{image.image.url}}"
+            alt="test image"
+            class="object-cover cursor-pointer w-full h-[26vh]"
+            alt="{{ image.name }}"
+          />
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+        prev
+      </button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+        next
+      </button>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-md w-[75vw] text-slate-500 mx-auto font-semibold mt-10">
+  Select an image to start editing below. You can also select previously
+  annotated images
+</h3>
+<div class="mt-12 w-[75vw] mx-auto" id="canvas">
+  <img
+    id="myImg"
+    data-key="{{ images.0.image.id }}"
+    src="{{ images.0.image.url }}"
+    alt="{{ images.0.name }}"
+    class="object-cover w-full h-full"
+    crossorigin="anonymous"
+  />
+</div>
+
+<div class="my-12 w-[75vw] mx-auto">
+  <h3 class="text-xl font-semibold mt-16 mb-4">Annotated Image Results</h3>
+  <div id="grid"></div>
+</div>
+
+<form action="processed-images/" method="POST" class="hidden">
+  {% csrf_token %}
+</form>
+
+{% endblock body %}
