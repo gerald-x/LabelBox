@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "@glidejs/glide": "^3.7.1",
+    "markerjs2": "^2.32.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "scripts": {
+    "dev": "babel src -d lib --watch",
+    "build": "npx webpack watch"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "babel-loader": "^9.2.1",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
