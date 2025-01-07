@@ -1,6 +1,6 @@
 # LabelBox
 
-An image annotation web application built on Django
+An image annotation web application built on Django and JavaScript's markerjs2
 
 # Django Setup Script
 
